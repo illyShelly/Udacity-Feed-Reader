@@ -71,7 +71,7 @@ $(function() {
       // 'toThrowError'
 
     /* TODO: Write a new test suite named "The menu" */
-  describe('The menu', function() {
+    describe('The menu', function() {
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -79,34 +79,29 @@ $(function() {
          */
          // body element has class="menu-hidden"
          // in app.js on line 130 is toggle class apllied for the element
-
-// menuIcon.on('click', function() {
-//         $('body').toggleClass('menu-hidden');
-//     });
-
-      // Matcher - toContain or hasClass
+      // Matcher - toContain with classList in Vanila JS
       it('menu element hidden by default', function() {
-        expect($('body').toContain("menu-hidden")).toBe(true);
-      });
-         /* TODO: Write a test that ensures the menu changes
+        expect($('body').hasClass("menu-hidden")).toBe(true);
+      }); /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-      // <a href="#" class="menu-icon-link"> in html
-      // in app.js line 100/130 (click), menuIcon = $('.menu-icon-link');
+        // <a href="#" class="menu-icon-link"> in html
+        // in app.js line 100/130 (click), menuIcon = $('.menu-icon-link');
       it('menu visibility changes when clicked', function() {
         // simulate click on the menu icon to open and hide again
+        // needs to turn off first then on - if not => fail
         $('.menu-icon-link').click();
-        expect($('body').toContain('menu-hidden')).toBe(true);
-        // when click again toggle icon menu
+        expect($('body').hasClass('menu-hidden')).toBe(false);
+        // when click again toggle icon menu to disappear again
         $('.menu-icon-link').click();
-        expect($('body').toContain('menu-hidden')).toBe(false);
+        expect($('body').hasClass('menu-hidden')).toBe(true);
       });
-  });
+    });
 
     /* TODO: Write a new test suite named "Initial Entries" */
-  describe('Initial Entries', function() {
+    describe('Initial Entries', function() {
        /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -114,14 +109,78 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-
-  });
-
-
+         // before we start each test we need to load 1st feed (function loadFeed with at least 1 element/feed)
+         // beforeEach method and callback fce (done()) help to test this
+         // callback fce (done) runs once the previous task is finished
+         // we run beforEach, with callback fce where loadFeed with its 1st element and its other callback ..done()ll which makes sure that loadFeed will be loaded fully
+      beforeEach(function(done) {
+        loadFeed(0, function() {
+          done();
+        });
+      });
+      // test whether elements of the .feed container with .entry class
+      // check length to be sure at least 1 element exist within feed!!!
+      // in ...class feed, is 1 or more ...class entry
+      it('has 1 element at least', function() {
+        let anyFeeds = $('.feed .entry');
+        expect(anyFeeds.length).toBeGreaterThan(0);
+      });
+    });
     /* TODO: Write a new test suite named "New Feed Selection" */
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    // I call twice this async function - call loadFeed() 2x
+    // ? differs new feed from previous one
+    // 2 variables to compare
+    describe('New Feed Selection', function() {
+      // variables with html content
+      let firstFeedCont;
+      let secondFeedCont;
+      // do we have at least 2 feeds to check
+      it('container has 2 feeds', function() {
+        expect(allFeeds.length).toBeGreaterThan(1);
+      });
+
+    // because is async fce loadFeed, we use beforeEach
+    // to check it was appropriately fully loaded first
+    describe('is loading another feed', function() {
+      // we check with callback done() whether both feeds were loaded
+      beforeEach(function(done) {
+        // we store html content (link in <a>) in variable firstFeedCont
+        // callback runs after the previous task is finished (loadFeed fce)
+        // nested callbacks firstly - 1st feed, then start 2nd callback with 2nd feed
+        loadFeed(1, function() {
+          firstFeedCont = $('.feed').html();
+        // within firstFeed's callback we will load the second feed as well
+        // not forget single quotes!!!
+          loadFeed(0, function() {
+            secondFeedCont = $('.feed').html();
+            // it will wait until is done thanks done()
+            done();
+            });
+        });
+      });
+      // when loadFeed [0] element first then I need to use afterEach method
+    // after everything is loaded and stored in variables =>
+    // now we check the content of both variables (their html content)
+      it('loaded different content of the feed', function() {
+        expect(firstFeedCont).not.toBe(secondFeedCont);
+      });
+    });
+  });
 }());
+
+
+
+
+
+
+
+
+
+
+
+
