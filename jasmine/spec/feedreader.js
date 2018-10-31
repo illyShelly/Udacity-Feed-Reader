@@ -167,7 +167,7 @@ $(function() {
     // after everything is loaded and stored in variables =>
     // now we check the content of both variables (their html content)
       it('loaded different content of the feed', function() {
-        expect(firstFeedCont).not.toBe(secondFeedCont);
+        expect(firstFeedCont).not.toEqual(secondFeedCont);
       });
     });
   });
