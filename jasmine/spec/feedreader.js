@@ -31,9 +31,9 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-         // not necessary to repeat describe('RSS..', function())
-        it('feed has its url defined and is not ', function() {
-          // do not write expect for forEach method!!!
+        // not necessary to repeat describe('RSS..', function())
+        it('feed has its url defined and is not empty', function() {
+          // do not write expect for forEach method
           allFeeds.forEach(function(feed) {
             expect(feed.url).toBeDefined();
             expect(feed.url.length).not.toBe(0);
@@ -52,24 +52,6 @@ $(function() {
       });
     });
 
-      // 'toBe',
-      // 'toBeCloseTo',
-      // 'toBeDefined',
-      // 'toBeFalsy',
-      // 'toBeGreaterThan',
-      // 'toBeLessThan',
-      // 'toBeNaN',
-      // 'toBeNull',
-      // 'toBeTruthy',
-      // 'toBeUndefined',
-      // 'toContain',
-      // 'toEqual',
-      // 'toHaveBeenCalled',
-      // 'toHaveBeenCalledWith',
-      // 'toMatch',
-      // 'toThrow',
-      // 'toThrowError'
-
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
         /* TODO: Write a test that ensures the menu element is
@@ -82,7 +64,8 @@ $(function() {
       // Matcher - toContain with classList in Vanila JS
       it('menu element hidden by default', function() {
         expect($('body').hasClass("menu-hidden")).toBe(true);
-      }); /* TODO: Write a test that ensures the menu changes
+      });
+      /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
@@ -140,7 +123,7 @@ $(function() {
       let firstFeedCont;
       let secondFeedCont;
       // do we have at least 2 feeds to check
-      it('container has 2 feeds', function() {
+      it('container has at least 2 feeds', function() {
         expect(allFeeds.length).toBeGreaterThan(1);
       });
 
@@ -166,7 +149,7 @@ $(function() {
       // when loadFeed [0] element first then I need to use afterEach method
     // after everything is loaded and stored in variables =>
     // now we check the content of both variables (their html content)
-      it('loaded different content of the feed', function() {
+      it('loaded different content of the feeds', function() {
         expect(firstFeedCont).not.toEqual(secondFeedCont);
       });
     });
