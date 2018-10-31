@@ -19,9 +19,9 @@ Practice and learn Jasmine for testing application, analyzing code writen in HTM
 
 ## Resources
 
-Feed Reader Testing [Project Rubric](https://review.udacity.com/#!/projects/3442558598/rubric)
-JavaScript Testing [course](https://www.udacity.com/course/ud549)
-Starter code: [required project assets](http://github.com/udacity/frontend-nanodegree-feedreader)
+Feed Reader Testing [Project Rubric](https://review.udacity.com/#!/projects/3442558598/rubric),
+JavaScript Testing [course](https://www.udacity.com/course/ud549),
+Starter code: [required project assets](http://github.com/udacity/frontend-nanodegree-feedreader),
 [Jasmine](http://jasmine.github.io/)
 
 ## How to run app
