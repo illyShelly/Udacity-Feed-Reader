@@ -27,7 +27,7 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -39,7 +39,7 @@ $(function() {
             expect(feed.url.length).not.toBe(0);
           });
         });
-        /* TODO: Write a test that loops through each feed
+        /* Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -52,7 +52,7 @@ $(function() {
       });
     });
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* Write a new test suite named "The menu" */
     describe('The menu', function() {
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -65,11 +65,12 @@ $(function() {
       it('menu element hidden by default', function() {
         expect($('body').hasClass("menu-hidden")).toBe(true);
       });
-      /* TODO: Write a test that ensures the menu changes
+      /*  Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
         // <a href="#" class="menu-icon-link"> in html
         // in app.js line 100/130 (click), menuIcon = $('.menu-icon-link');
       it('menu visibility changes when clicked', function() {
@@ -83,19 +84,19 @@ $(function() {
       });
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /*  Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-       /* TODO: Write a test that ensures when the loadFeed
+       /*  Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-         // before we start each test we need to load 1st feed (function loadFeed with at least 1 element/feed)
-         // beforeEach method and callback fce (done()) help to test this
-         // callback fce (done) runs once the previous task is finished
-         // we run beforEach, with callback fce where loadFeed with its 1st element and its other callback ..done()ll which makes sure that loadFeed will be loaded fully
+     // before we start each test we need to load 1st feed (function loadFeed with at least 1 element/feed)
+     // beforeEach method and callback fce (done()) help to test this
+     // callback fce (done) runs once the previous task is finished
+     // we run beforEach, with callback fce where loadFeed with its 1st element and its other callback ..done()ll which makes sure that loadFeed will be loaded fully
       beforeEach(function(done) {
         loadFeed(0, function() {
           done();
@@ -104,14 +105,14 @@ $(function() {
       // test whether elements of the .feed container with .entry class
       // check length to be sure at least 1 element exist within feed!!!
       // in ...class feed, is 1 or more ...class entry
-      it('has 1 element at least', function() {
+      it('has 1 element at least within feed', function() {
         let anyFeeds = $('.feed .entry');
         expect(anyFeeds.length).toBeGreaterThan(0);
       });
     });
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* Write a new test suite named "New Feed Selection" */
 
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
